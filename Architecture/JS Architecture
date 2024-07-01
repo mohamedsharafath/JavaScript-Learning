@@ -1,0 +1,101 @@
+### JavaScript Runtime Environment
+
+**What it is:**
+The JavaScript Runtime Environment (JRE) is the environment where JavaScript code is executed. It includes the JavaScript engine, the APIs provided by the host environment (e.g., browser or Node.js), and the Event Loop.
+
+**Where it is used:**
+JavaScript runtime environments are used in web browsers (like Chrome, Firefox, and Safari) and server-side environments (like Node.js).
+
+**Why it is used:**
+The JRE allows JavaScript code to interact with the surrounding environment, such as manipulating the DOM in a browser or handling file I/O in Node.js.
+
+### JavaScript Engine Architecture
+
+**What it is:**
+A JavaScript engine is a program or interpreter that executes JavaScript code. Popular engines include Google's V8 (used in Chrome and Node.js), SpiderMonkey (used in Firefox), and JavaScriptCore (used in Safari).
+
+**Where it is used:**
+JavaScript engines are embedded in web browsers and server environments to execute JavaScript code.
+
+**Why it is used:**
+To parse, compile, and execute JavaScript code efficiently.
+
+**Components:**
+- **Parser:** Parses the JavaScript code and generates an Abstract Syntax Tree (AST).
+- **Interpreter:** Interprets the AST and generates bytecode.
+- **Compiler (JIT):** Compiles frequently executed code into optimized machine code.
+- **Garbage Collector:** Manages memory allocation and deallocation.
+
+### How Code is Executed in JavaScript
+
+1. **Parsing:** The JavaScript engine parses the code into an Abstract Syntax Tree (AST).
+2. **Interpretation:** The AST is interpreted into bytecode by the interpreter.
+3. **Compilation:** The Just-In-Time (JIT) compiler identifies frequently executed code and compiles it into machine code for faster execution.
+4. **Execution:** The engine executes the bytecode or compiled machine code.
+
+### JIT Compilation
+
+**What it is:**
+Just-In-Time (JIT) compilation is a method where the JavaScript engine compiles code into machine code at runtime, rather than before execution.
+
+**Where it is used:**
+Used in JavaScript engines like V8 to optimize code execution.
+
+**Why it is used:**
+To improve the performance of JavaScript by compiling hot code paths into highly optimized machine code.
+
+### Callback Queue
+
+**What it is:**
+The Callback Queue (or Task Queue) is where callback functions from asynchronous operations (like `setTimeout` and `fetch`) are placed.
+
+**Where it is used:**
+Used in the JavaScript runtime environment to manage asynchronous tasks.
+
+**Why it is used:**
+To ensure that asynchronous operations are handled in a non-blocking manner.
+
+### Microtask Queue
+
+**What it is:**
+The Microtask Queue is a special queue for microtasks, which are typically smaller, faster tasks like `Promise` callbacks and mutation observer callbacks.
+
+**Where it is used:**
+Used in the JavaScript runtime environment alongside the callback queue.
+
+**Why it is used:**
+To prioritize more urgent tasks and ensure a smooth user experience by quickly processing microtasks before handling the callback queue.
+
+### Event Loop
+
+**What it is:**
+The Event Loop is a mechanism that continuously checks the call stack and the callback and microtask queues, executing tasks in the correct order.
+
+**Where it is used:**
+Core part of the JavaScript runtime environment.
+
+**Why it is used:**
+To handle asynchronous operations and events, ensuring non-blocking execution of code.
+
+### Call Stack
+
+**What it is:**
+The Call Stack is a stack data structure that keeps track of function calls in the order they need to be executed.
+
+**Where it is used:**
+Used by the JavaScript engine to manage function execution.
+
+**Why it is used:**
+To keep track of the execution context and manage the order of function calls.
+
+### Execution Flow Example
+
+1. **Call Stack:** Initially, synchronous code is executed, and function calls are pushed onto the call stack.
+2. **Callback Queue:** Asynchronous tasks (like `setTimeout`) add their callbacks to the callback queue.
+3. **Microtask Queue:** Promises and other microtasks add their callbacks to the microtask queue.
+4. **Event Loop:** The event loop checks the call stack and processes microtasks first, then moves to the callback queue if the call stack is empty.
+5. **Execution:** Functions are popped from the call stack and executed, while callbacks are processed from the queues when the call stack is clear.
+
+### Summary
+
+The JavaScript runtime environment comprises the JavaScript engine and various components like the call stack, event loop, callback queue, and microtask queue. JavaScript code execution involves parsing, interpreting, and optionally JIT compiling code, while asynchronous operations are managed via the event loop, ensuring non-blocking execution and a smooth user experience.
