@@ -1,0 +1,93 @@
+### Callback Functions
+
+**What they are:**
+Callback functions are functions that are passed as arguments to other functions and are executed after some operation has been completed. In JavaScript, functions are first-class objects, which means they can be treated like any other variable. This allows you to pass functions as arguments to other functions.
+
+**Where they are used:**
+Callback functions are used in various scenarios, particularly in asynchronous operations such as:
+- Event handling (e.g., button clicks, form submissions)
+- Asynchronous API calls (e.g., AJAX requests, fetching data)
+- Timers (e.g., `setTimeout`, `setInterval`)
+- Array methods (e.g., `map`, `filter`, `forEach`)
+- Handling results from asynchronous operations like reading files or databases
+
+**Why they are used:**
+- **Asynchronous Programming:** Callbacks allow you to execute code after an asynchronous operation has completed, ensuring that code execution doesn't block while waiting for the operation to finish.
+- **Event Handling:** Callbacks provide a way to define what should happen when an event occurs.
+- **Modularity and Reusability:** Callbacks help in writing modular code by separating the implementation of an operation from what should be done after the operation.
+- **Custom Behavior:** They allow for custom behavior to be defined and passed around as needed.
+
+### Example of a Callback Function
+
+#### Asynchronous Example with `setTimeout`:
+
+```javascript
+// Define a callback function
+function greet(name) {
+    console.log(`Hello, ${name}!`);
+}
+
+// Use the callback function with setTimeout
+setTimeout(() => {
+    greet('Alice');
+}, 1000);
+```
+
+In this example, the `greet` function is passed as a callback to `setTimeout` and will be executed after 1 second.
+
+#### Event Handling Example:
+
+```javascript
+// Define a callback function
+function handleClick() {
+    console.log('Button clicked!');
+}
+
+// Attach the callback to a button's click event
+document.getElementById('myButton').addEventListener('click', handleClick);
+```
+
+In this example, the `handleClick` function is passed as a callback to the `addEventListener` method, which will be called whenever the button is clicked.
+
+#### Array Method Example:
+
+```javascript
+const numbers = [1, 2, 3, 4, 5];
+
+// Define a callback function
+function double(num) {
+    return num * 2;
+}
+
+// Use the callback function with the map method
+const doubledNumbers = numbers.map(double);
+console.log(doubledNumbers); // [2, 4, 6, 8, 10]
+```
+
+In this example, the `double` function is passed as a callback to the `map` method, which applies the function to each element of the array.
+
+#### Asynchronous API Call Example:
+
+```javascript
+// Define a callback function
+function displayData(data) {
+    console.log('Data received:', data);
+}
+
+// Simulate an asynchronous API call
+function fetchData(callback) {
+    setTimeout(() => {
+        const data = { userId: 1, name: 'John Doe' };
+        callback(data);
+    }, 2000);
+}
+
+// Use the callback function with the fetchData function
+fetchData(displayData);
+```
+
+In this example, the `displayData` function is passed as a callback to the `fetchData` function and is executed once the data is "received" after a simulated delay.
+
+### Summary
+
+Callback functions are essential in JavaScript for handling asynchronous operations and events. They provide a way to execute code after an operation has completed, enhancing code modularity, reusability, and custom behavior.
