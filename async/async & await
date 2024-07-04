@@ -1,0 +1,79 @@
+Async and Await in JavaScript
+What They Are:
+async and await are syntactic features in JavaScript introduced to simplify working with Promises and make asynchronous code look and behave more like synchronous code.
+
+async Function
+What it is:
+An async function is a function declared with the async keyword, allowing you to use the await keyword inside it.
+
+Where it is used:
+
+To define a function that handles asynchronous operations more straightforwardly.
+To ensure that the function returns a promise, even if it doesn't explicitly return one.
+Why it is used:
+
+To improve readability and maintainability of asynchronous code.
+To handle Promises more naturally without chaining then and catch.
+await Expression
+What it is:
+The await expression pauses the execution of an async function until the promise is settled (either fulfilled or rejected). It can only be used inside async functions.
+
+Where it is used:
+
+To wait for a promise to resolve before continuing the execution of the code that follows.
+To replace .then and .catch chains for a more linear code flow.
+Why it is used:
+
+To write asynchronous code that looks and behaves more like synchronous code.
+To make error handling simpler with try/catch blocks.
+How They Work Together
+An async function returns a promise, and within this function, you can use await to pause the execution of the function until the awaited promise is resolved or rejected. This makes it possible to write code that performs asynchronous operations in a sequential, synchronous-looking manner.
+
+Examples
+Basic Usage
+javascript
+Copy code
+// Example of an async function
+async function fetchData() {
+    const response = await fetch('https://api.example.com/data');
+    const data = await response.json();
+    return data;
+}
+
+fetchData().then(data => {
+    console.log(data);
+}).catch(error => {
+    console.error('Error:', error);
+});
+In this example:
+
+fetchData is an async function.
+await fetch('https://api.example.com/data') pauses the function execution until the fetch promise is resolved.
+await response.json() pauses again until the json promise is resolved.
+The function returns the fetched data as a promise.
+Error Handling
+javascript
+Copy code
+async function fetchData() {
+    try {
+        const response = await fetch('https://api.example.com/data');
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Fetch error:', error);
+        throw error; // rethrowing the error to be handled by the caller
+    }
+}
+
+fetchData().then(data => {
+    console.log(data);
+}).catch(error => {
+    console.error('Error caught:', error);
+});
+In this example:
+
+try/catch block is used to handle errors within the async function.
+If an error occurs (e.g., network failure), it is caught and logged, and then rethrown to be handled by the caller.
